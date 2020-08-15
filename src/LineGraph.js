@@ -49,6 +49,7 @@ const options ={
     }
 
 }
+
 const buildChartData = (data,casesType = 'cases')=>{
     const chartData = []
     let lastDataPoint 
@@ -64,22 +65,22 @@ const buildChartData = (data,casesType = 'cases')=>{
     }
     return chartData
 }
-
-const LineGraph = () => {
+const LineGraph = ({casesType}) => {
     const [data,setData] =useState({})
     useEffect(()=>{ 
              const getData= async()=>{ 
                await axios.get('https://disease.sh/v3/covid-19/historical/all?lastdays=120')
                 .then(res=>res.data)
                 .then(data=>{
-                    const newChartData = buildChartData(data)
+                    const newChartData = buildChartData(data,casesType)
                     setData(newChartData)
                     //console.log('Data:',data)
                 })
              }
              getData()
-    },[])
-    console.log('Data:',data)
+    },[casesType])
+    //console.log('Data:',data)
+    
     return (
         <div>
             {data?.length>0 &&(

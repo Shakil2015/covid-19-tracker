@@ -1,9 +1,19 @@
 import React from 'react'
+import { Map as LeafletMap,TileLayer } from 'react-leaflet'
+import './Map.css'
+import { showDataOnMap } from './util'
 
-const Map = () => {
+const Map = ({countries,casesType,center,zoom}) => {
+    
     return (
         <div className='map'>
-            <h1>I am a map</h1>
+            <LeafletMap center={center} zoom={zoom}>
+                <TileLayer
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
+                />
+                {showDataOnMap(countries,casesType)}
+            </LeafletMap>
             
         </div>
     )
