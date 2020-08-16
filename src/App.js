@@ -75,6 +75,7 @@ function App() {
             value={country}
             onChange={onChangeCountry}
             >
+              <MenuItem value="worldwide">Worldwide</MenuItem>
               {
                 countries.map(country=>(
                 <MenuItem value={country.value} key={Math.random()}>{country.name}</MenuItem>
@@ -85,9 +86,29 @@ function App() {
         </div>
         <div className='app_status'>
           
-          <Infobox onClick={e=>setCasesType('cases')} title='Coronavirus' cases={prettyPrintState(countryInfo.todayCases)} totalCases={prettyPrintState(countryInfo.cases)}/>
-          <Infobox onClick={e=>setCasesType('recovered')} title='Recovered' cases={prettyPrintState(countryInfo.todayRecovered)} totalCases={prettyPrintState(countryInfo.recovered)}/>
-          <Infobox onClick={e=>setCasesType('deaths')} title='Deaths' cases={prettyPrintState(countryInfo.todayDeaths)} totalCases={prettyPrintState(countryInfo.deaths)}/>
+          <Infobox 
+            isRed
+            active = {casesType === 'cases'}
+            onClick={e=>setCasesType('cases')} 
+            title='Coronavirus' 
+            cases={prettyPrintState(countryInfo.todayCases)} 
+            totalCases={prettyPrintState(countryInfo.cases)}
+          />
+          <Infobox 
+            active = {casesType === 'recovered'}
+            onClick={e=>setCasesType('recovered')} 
+            title='Recovered' 
+            cases={prettyPrintState(countryInfo.todayRecovered)} 
+            totalCases={prettyPrintState(countryInfo.recovered)}
+          />
+          <Infobox 
+            isRed
+            active = {casesType === 'deaths'}
+            onClick={e=>setCasesType('deaths')} 
+            title='Deaths' 
+            cases={prettyPrintState(countryInfo.todayDeaths)} 
+            totalCases={prettyPrintState(countryInfo.deaths)}
+          />
             
         </div>
         <Map casesType={casesType} countries={mapCountries} center={mapCenter} zoom={mapZoom}/>
