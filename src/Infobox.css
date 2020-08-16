@@ -18,8 +18,8 @@
     margin-top: 15px !important;
 }
 .infoBox--selected{
-    border-top: 10px solid grey;
+    border-top: 10px solid grey !important;
 }
 .infoBox--red{
-    border-top: 10px solid red !important;
+    border-top: 10px solid red;
 }
