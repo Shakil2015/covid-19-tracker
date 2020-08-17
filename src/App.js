@@ -1,13 +1,13 @@
 import React,{useState,useEffect} from 'react';
-import { FormControl,Select,MenuItem,Card,CardContent,Typography } from '@material-ui/core'
+import { FormControl,Select,MenuItem,Card,CardContent} from '@material-ui/core'
 import axios from 'axios'
-import Infobox from './Infobox'
-import Map from './Map'
-import Table from './Table'
-import {sortData,prettyPrintState} from './util'
-import LineGraph from './LineGraph'
+import Infobox from './components/Infobox'
+import Map from './components/Map'
+import Table from './components/Table'
+import {sortData,prettyPrintState} from './utils/util'
+import LineGraph from './components/LineGraph'
 import 'leaflet/dist/leaflet.css'
-import './App.css'
+import './css/App.css'
 
 function App() {
   const [countries,setCountries] =useState([])
@@ -68,7 +68,7 @@ function App() {
     <div className="app">
       <div className='app_left'>
         <div className='app_header'>  
-          <h2 className='app_header_h1'>COVID-19 TRACKER</h2>
+          <h2 className='app_header_h1'>COVID-19 <i className='app_live'>LIVE</i></h2>
           <FormControl className='app_dropdown'>
             <Select
             variant='outlined'
@@ -120,8 +120,8 @@ function App() {
         <CardContent>
           <h3>Live Cases by Country</h3>
           <Table countries ={tableData}/>
-            <h3>WorldWide new {casesType}</h3>
-          <LineGraph casesType={casesType}/>
+            <h3 className='app_graph_title'>WorldWide new {casesType}</h3>
+          <LineGraph className='app_graph' casesType={casesType}/>
         </CardContent>
 
       </Card>

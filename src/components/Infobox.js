@@ -1,5 +1,5 @@
 import React from 'react'
-import './Infobox.css'
+import '../css/Infobox.css'
 import { Card,CardContent,Typography } from '@material-ui/core'
 
 const Infobox = ({title,cases,totalCases,active,isRed,...props}) => {

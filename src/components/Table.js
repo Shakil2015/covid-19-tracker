@@ -1,6 +1,6 @@
 import React from 'react'
 import numeral from 'numeral'
-import './Table.css'
+import '../css/Table.css'
 
 const Table = ({countries}) => {
     return (
