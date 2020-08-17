@@ -14,6 +14,15 @@ body{
     align-items: center;
     margin-bottom: 20px;
     justify-content: space-between;
+}.app_header_h1{
+    color:blue;
+    font-size: 24px;
+    font-family: sans-serif;
+    font-weight: 1000;
+}
+.app_dropdown{
+    background-color: #fff;
+    border-radius: 5px;
 }
 .app_left{
     flex: 0.9;

@@ -50,24 +50,25 @@ function App() {
 
   const onChangeCountry = async (e)=>{
     const countryCode = e.target.value
-  
+       console.log(countryCode)
     const url = countryCode === 'worldwide'? 'https://disease.sh/v3/covid-19/all':`https://disease.sh/v3/covid-19/countries/${countryCode} `
      await axios.get(url)
                  .then(res=>res.data)
                  .then(data=>{
                   setCountry(countryCode)
                   setCountryInfo(data)
-                  setMapCenter([data.countryInfo.lat,data.countryInfo.long])
+                  data.countryInfo ? setMapCenter([data.countryInfo.lat,data.countryInfo.long]):setMapCenter({lat:34.80746,lng:-40.4796})
                   setMapZoom(4)
 
                  })
+    
   }
   //console.log('country:',mapCountries)
   return (
     <div className="app">
       <div className='app_left'>
         <div className='app_header'>  
-          <h1>COVID-19 TRACKER</h1>
+          <h2 className='app_header_h1'>COVID-19 TRACKER</h2>
           <FormControl className='app_dropdown'>
             <Select
             variant='outlined'
@@ -88,7 +89,7 @@ function App() {
           
           <Infobox 
             
-            active = {casesType === 'cases'&& 2}
+            active= {casesType === 'cases'}
             onClick={e=>setCasesType('cases')} 
             isRed
             title='Coronavirus' 
@@ -96,7 +97,7 @@ function App() {
             totalCases={prettyPrintState(countryInfo.cases)}
           />
           <Infobox 
-            active = {casesType === 'recovered' ? 3:false}
+            active= {casesType === 'recovered'}
             onClick={e=>setCasesType('recovered')} 
             title='Recovered' 
             cases={prettyPrintState(countryInfo.todayRecovered)} 
@@ -104,9 +105,10 @@ function App() {
           />
           <Infobox 
 
-            active = {casesType === 'deaths'? 4: 0}
+            active= {casesType === 'deaths'}
             onClick={e=>setCasesType('deaths')} 
             title='Deaths' 
+            isRed
             cases={prettyPrintState(countryInfo.todayDeaths)} 
             totalCases={prettyPrintState(countryInfo.deaths)}
           />
